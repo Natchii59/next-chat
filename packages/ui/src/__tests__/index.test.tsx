@@ -1,11 +1,13 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { CounterButton } from "../CounterButton";
+import * as React from 'react'
+import { createRoot } from 'react-dom/client'
 
-describe("CounterButton", () => {
-  it("renders without crashing", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(<CounterButton />, div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
-});
+import { Button } from '../components/ui'
+
+describe('Button', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div')
+    const root = createRoot(div)
+    root.render(<Button />)
+    root.unmount()
+  })
+})

@@ -1,4 +1,4 @@
-# Turborepo kitchen sink starter
+# Next Chat
 
 This is an official starter Turborepo with multiple meta-frameworks all working in harmony and sharing packages.
 
@@ -18,12 +18,9 @@ This Turborepo includes the following packages and apps:
 
 ### Apps and Packages
 
-- `api`: an [Express](https://expressjs.com/) server
-- `storefront`: a [Next.js](https://nextjs.org/) app
-- `admin`: a [Vite](https://vitejs.dev/) single page app
-- `blog`: a [Remix](https://remix.run/) blog
-- `logger`: isomorphic logger (a small wrapper around console.log)
-- `ui`: a dummy React UI library (which contains a single `<CounterButton>` component)
+- `server`: an [Express](https://expressjs.com/) server
+- `client`: a [Next.js](https://nextjs.org/) app
+- `ui`: a dummy React UI library
 - `scripts`: Jest and ESLint configurations
 - `tsconfig`: tsconfig.json's used throughout the monorepo
 

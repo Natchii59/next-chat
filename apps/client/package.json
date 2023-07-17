@@ -25,6 +25,8 @@
     "autoprefixer": "^10.4.14",
     "eslint-config-custom": "workspace:*",
     "postcss": "^8.4.26",
+    "prettier-config": "workspace:*",
+    "prettier-plugin-tailwindcss": "^0.4.1",
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.3.3",
     "tsconfig": "workspace:*",

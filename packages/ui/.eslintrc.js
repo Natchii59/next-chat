@@ -1,7 +1,11 @@
+const { join } = require('path')
+
 module.exports = {
   root: true,
   extends: ['custom'],
-  rules: {
-    '@next/next/no-html-link-for-pages': 'off'
+  settings: {
+    tailwindcss: {
+      config: join(__dirname, 'tailwind.config.js')
+    }
   }
 }

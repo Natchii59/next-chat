@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { buttonVariants, cn } from 'ui'
 
+import { UserAvatar } from '@/components/user-avatar'
+
 interface SidebarUserProps {
   user: {
     id: number
@@ -8,16 +10,18 @@ interface SidebarUserProps {
   }
 }
 
-export default function SidebarUser({ user }: SidebarUserProps) {
+export function SidebarUserItem({ user }: SidebarUserProps) {
   return (
     <Link
       href={`/chat/${user.id}`}
       className={cn(
         buttonVariants({ variant: 'ghost' }),
-        'rounded-md px-4 py-2'
+        'h-auto w-full justify-start px-2 py-px'
       )}
     >
-      {user.name}
+      <UserAvatar user={user} className='mr-2' />
+
+      <span>{user.name}</span>
     </Link>
   )
 }

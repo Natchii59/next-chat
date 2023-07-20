@@ -1,3 +1,3 @@
 export default function LoadingChat() {
-  return <div>Loading Chat</div>
+  return <div>LOADING</div>
 }

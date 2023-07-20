@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import localFont from 'next/font/local'
-import { cn } from 'ui'
 
 import '@/styles/globals.css'
 import 'ui/styles/globals.css'
+
+import { cn } from 'ui'
 
 import { Analytics } from '@/components/analytics'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang='fr'>
+    <html lang='fr' suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
@@ -66,7 +67,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           {children}
           <Analytics />
-          <TailwindIndicator />
+          {/* <TailwindIndicator /> */}
         </ThemeProvider>
       </body>
     </html>

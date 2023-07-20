@@ -1,15 +1,15 @@
-interface Props {
-  sidebar: React.ReactNode
-}
+import { Sidebar } from '@/components/chat/sidebar'
 
 export default async function ChatLayout({
-  children,
-  sidebar
-}: React.PropsWithChildren<Props>) {
+  children
+}: React.PropsWithChildren) {
   return (
-    <div className='grid grid-cols-3'>
-      <div className='col-span-1'>{sidebar}</div>
-      <div className='col-span-2'>{children}</div>
+    <div className='grid h-full grid-cols-4'>
+      <div className='col-span-1'>
+        <Sidebar />
+      </div>
+
+      <div className='col-span-3'>{children}</div>
     </div>
   )
 }

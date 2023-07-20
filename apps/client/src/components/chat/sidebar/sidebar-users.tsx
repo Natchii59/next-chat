@@ -1,4 +1,4 @@
-import SidebarUser from '@/components/chat/sidebar/sidebar-user'
+import { SidebarUserItem } from './sidebar-user-item'
 
 async function getUsersSidebar() {
   const users = [
@@ -7,18 +7,18 @@ async function getUsersSidebar() {
     { id: 3, name: 'Jack' }
   ]
 
-  await new Promise(resolve => setTimeout(resolve, 0))
+  await new Promise(resolve => setTimeout(resolve, 2000))
 
   return users
 }
 
-export default async function SidebarPage() {
+export async function SidebarUsers() {
   const users = await getUsersSidebar()
 
   return (
     <>
       {users.map(user => (
-        <SidebarUser key={user.id} user={user} />
+        <SidebarUserItem key={user.id} user={user} />
       ))}
     </>
   )

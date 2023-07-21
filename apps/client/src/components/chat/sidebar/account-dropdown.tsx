@@ -1,5 +1,6 @@
 import {
-  Button,
+  buttonVariants,
+  cn,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -26,15 +27,15 @@ export async function AccountDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant='secondary'
-          className='group h-auto justify-start gap-2'
-        >
-          <UserAvatar user={account} className='h-9 w-9' />
-          <span className='flex-auto text-left'>{account.name}</span>
-          <Icons.moreHorizontal className='h-4 w-4' />
-        </Button>
+      <DropdownMenuTrigger
+        className={cn(
+          buttonVariants({ variant: 'secondary' }),
+          'group h-auto justify-start gap-2'
+        )}
+      >
+        <UserAvatar user={account} className='h-9 w-9' />
+        <span className='flex-auto text-left'>{account.name}</span>
+        <Icons.moreHorizontal className='h-4 w-4' />
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className='w-[var(--radix-dropdown-menu-trigger-width)]'>

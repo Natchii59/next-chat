@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import localFont from 'next/font/local'
 
-import '@/styles/globals.css'
 import 'ui/styles/globals.css'
 
 import { cn } from 'ui'
@@ -44,13 +43,7 @@ export const metadata: Metadata = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' }
-  ],
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.name,
-    description: siteConfig.description,
-    creator: '@Natchi59'
-  }
+  ]
 }
 
 export default function RootLayout({ children }: React.PropsWithChildren) {

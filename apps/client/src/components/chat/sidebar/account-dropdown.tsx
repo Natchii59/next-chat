@@ -3,11 +3,14 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from 'ui'
 
 import { Icons } from '@/components/icons'
 import { UserAvatar } from '@/components/user-avatar'
+
+import { ThemeModeToggle } from './theme-mode-toggle'
 
 async function getAccount() {
   await new Promise(resolve => setTimeout(resolve, 1000))
@@ -35,6 +38,8 @@ export async function AccountDropdown() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className='w-[var(--radix-dropdown-menu-trigger-width)]'>
+        <ThemeModeToggle />
+        <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Icons.settings className='mr-2 h-4 w-4' />
           <span>Settings</span>

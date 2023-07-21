@@ -8,7 +8,6 @@ import 'ui/styles/globals.css'
 import { cn } from 'ui'
 
 import { Analytics } from '@/components/analytics'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { ThemeProvider } from '@/components/theme-provider'
 import { siteConfig } from '@/config/site'
 
@@ -67,7 +66,6 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           {children}
           <Analytics />
-          {/* <TailwindIndicator /> */}
         </ThemeProvider>
       </body>
     </html>

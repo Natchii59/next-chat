@@ -1,4 +1,11 @@
-import { buttonVariants, cn } from 'ui'
+import {
+  buttonVariants,
+  cn,
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger
+} from 'ui'
 
 import { ButtonTooltip } from '../button-tooltip'
 import { Icons } from '../icons'
@@ -14,21 +21,29 @@ interface FriendItemProps {
 
 export function FriendPendingItem({ friend }: FriendItemProps) {
   return (
-    <li
-      className={cn(
-        buttonVariants({ variant: 'ghost' }),
-        'h-auto justify-start px-3 py-1.5'
-      )}
-    >
-      <UserAvatar user={friend} className='mr-2' />
-      <span className='flex-auto'>{friend.name}</span>
+    <ContextMenu>
+      <ContextMenuTrigger asChild>
+        <li
+          className={cn(
+            buttonVariants({ variant: 'ghost' }),
+            'h-auto justify-start px-3 py-1.5 data-[state=open]:bg-accent'
+          )}
+        >
+          <UserAvatar user={friend} className='mr-2' />
+          <span className='flex-auto'>{friend.name}</span>
 
-      <ButtonTooltip
-        size='icon'
-        className={cn('h-6 w-6')}
-        button={<Icons.times className='h-5 w-5' />}
-        tooltip={<span>Cancel</span>}
-      />
-    </li>
+          <ButtonTooltip
+            size='icon'
+            className='h-6 w-6'
+            button={<Icons.times className='h-5 w-5' />}
+            tooltip={<span>Cancel</span>}
+          />
+        </li>
+      </ContextMenuTrigger>
+
+      <ContextMenuContent className='min-w-[10rem]'>
+        <ContextMenuItem>Profile</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
   )
 }

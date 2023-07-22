@@ -8,7 +8,8 @@ import {
   Sun,
   User,
   UserX,
-  X
+  X,
+  XCircle
 } from 'lucide-react'
 
 export const Icons = {
@@ -21,5 +22,6 @@ export const Icons = {
   laptop: Laptop,
   check: Check,
   times: X,
+  timesCircle: XCircle,
   userX: UserX
 }

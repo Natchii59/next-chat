@@ -38,7 +38,7 @@
     "jest": "^29.6.1",
     "jest-environment-jsdom": "^29.6.1",
     "jest-presets": "workspace:*",
-    "postcss": "^8.4.26",
+    "postcss": "^8.4.27",
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.3.3",
     "tsconfig": "workspace:*",

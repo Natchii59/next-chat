@@ -1,11 +1,14 @@
 import {
+  Check,
   Laptop,
   LogOut,
   Moon,
   MoreHorizontal,
   Settings2,
   Sun,
-  User
+  User,
+  UserX,
+  X
 } from 'lucide-react'
 
 export const Icons = {
@@ -15,5 +18,8 @@ export const Icons = {
   moreHorizontal: MoreHorizontal,
   moon: Moon,
   sun: Sun,
-  laptop: Laptop
+  laptop: Laptop,
+  check: Check,
+  times: X,
+  userX: UserX
 }

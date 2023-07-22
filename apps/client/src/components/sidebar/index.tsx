@@ -8,7 +8,7 @@ import { SidebarUsers } from './sidebar-users'
 export async function Sidebar() {
   return (
     <nav className='flex min-h-screen flex-col gap-4 rounded-md border-r border-secondary p-2'>
-      <Link href='/chat' className='font-heading text-2xl'>
+      <Link href='/' className='font-heading text-2xl'>
         Next Chat
       </Link>
 

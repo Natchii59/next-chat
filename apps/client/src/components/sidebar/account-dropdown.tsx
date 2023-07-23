@@ -33,7 +33,7 @@ export async function AccountDropdown() {
           'group h-auto justify-start gap-2'
         )}
       >
-        <UserAvatar user={account} className='h-9 w-9' />
+        <UserAvatar user={account} />
         <span className='flex-auto text-left'>{account.name}</span>
         <Icons.moreHorizontal className='h-4 w-4' />
       </DropdownMenuTrigger>

@@ -4,6 +4,7 @@ import {
   LogOut,
   Moon,
   MoreHorizontal,
+  Send,
   Settings2,
   Sun,
   User,
@@ -23,5 +24,6 @@ export const Icons = {
   check: Check,
   times: X,
   timesCircle: XCircle,
-  userX: UserX
+  userX: UserX,
+  send: Send
 }

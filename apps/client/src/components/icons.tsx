@@ -1,6 +1,9 @@
 import {
   Check,
+  Chrome,
+  Github,
   Laptop,
+  Loader2,
   LogOut,
   Moon,
   MoreHorizontal,
@@ -25,5 +28,8 @@ export const Icons = {
   times: X,
   timesCircle: XCircle,
   userX: UserX,
-  send: Send
+  send: Send,
+  spinner: Loader2,
+  github: Github,
+  google: Chrome
 }

@@ -5,6 +5,7 @@ import { Icons } from '@/components/icons'
 interface UserAvatarProps extends AvatarProps {
   classNameImage?: string
   classNameFallback?: string
+  classNameIcon?: string
   user: {
     name: string
     image?: string
@@ -15,6 +16,7 @@ export function UserAvatar({
   user,
   classNameImage,
   classNameFallback,
+  classNameIcon,
   ...props
 }: UserAvatarProps) {
   return (
@@ -28,7 +30,7 @@ export function UserAvatar({
       ) : (
         <AvatarFallback className={cn(classNameFallback)}>
           <span className='sr-only'>{user.name}</span>
-          <Icons.user className='h-4 w-4' />
+          <Icons.user className={cn('h-4 w-4', classNameIcon)} />
         </AvatarFallback>
       )}
     </Avatar>

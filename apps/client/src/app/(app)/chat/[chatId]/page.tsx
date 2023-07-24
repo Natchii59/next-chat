@@ -8,10 +8,20 @@ interface Props {
 }
 
 // eslint-disable-next-line no-unused-vars
+async function getUser(chatId: string) {
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
+  return {
+    id: 1,
+    name: 'John Doe'
+  }
+}
+
+// eslint-disable-next-line no-unused-vars
 async function getMessages(chatId: string) {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
-  return [...Array(100)].map((_, i) => ({
+  return [...Array(40)].map((_, i) => ({
     id: i,
     content: `Message ${i}`,
     createdAt: new Date(),
@@ -23,11 +33,12 @@ async function getMessages(chatId: string) {
 }
 
 export default async function ChatPage({ params }: Props) {
+  const user = await getUser(params.chatId)
   const messages = await getMessages(params.chatId)
 
   return (
     <>
-      <MessagesList messages={messages} />
+      <MessagesList user={user} baseMessages={messages} />
 
       <div className='p-2 pt-0'>
         <ChatInput />

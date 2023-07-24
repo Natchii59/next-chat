@@ -2,14 +2,17 @@ import { FriendBlockedItem } from '@/components/friends/friend-blocked-item'
 import { Icons } from '@/components/icons'
 
 interface FriendBlocked {
-  id: number
+  id: string
   name: string
 }
 
 async function getFriendBlocked(): Promise<FriendBlocked[]> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
-  return [{ id: 1, name: 'John Doe' }]
+  return Array.from({ length: 10 }).map((_, index) => ({
+    id: `${index}`,
+    name: `Friend ${index}`
+  }))
 }
 
 export default async function FriendBlockedPage() {

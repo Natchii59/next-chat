@@ -16,7 +16,7 @@ function MessageLoading() {
 export default function ChatLoading() {
   return (
     <ul className='flex flex-col gap-3 p-2'>
-      {[...Array(10)].map((_, index) => (
+      {Array.from({ length: 10 }).map((_, index) => (
         <MessageLoading key={index} />
       ))}
     </ul>

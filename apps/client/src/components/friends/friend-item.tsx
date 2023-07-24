@@ -15,7 +15,7 @@ import { UserAvatar } from '../user-avatar'
 
 interface FriendItemProps {
   friend: {
-    id: number
+    id: string
     name: string
     image?: string
   }
@@ -24,7 +24,7 @@ interface FriendItemProps {
 export function FriendItem({ friend }: FriendItemProps) {
   const router = useRouter()
 
-  function redirectToUserChat(userId: number) {
+  function redirectToUserChat(userId: string) {
     router.push(`/chat/${userId}`)
   }
 

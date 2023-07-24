@@ -2,7 +2,7 @@ import { FriendPendingItem } from '@/components/friends/friend-pending-item'
 import { Icons } from '@/components/icons'
 
 interface FriendPending {
-  id: number
+  id: string
   name: string
 }
 

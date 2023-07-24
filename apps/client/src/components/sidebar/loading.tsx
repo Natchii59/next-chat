@@ -12,7 +12,7 @@ function UserSkeleton() {
 export function SidebarUsersLoading() {
   return (
     <>
-      {Array.from({ length: 3 }).map((_, index) => (
+      {Array.from({ length: 10 }).map((_, index) => (
         <UserSkeleton key={index} />
       ))}
     </>

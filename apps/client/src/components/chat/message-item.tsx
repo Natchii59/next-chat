@@ -5,7 +5,7 @@ interface Message {
   content: string
   createdAt: Date
   sender: {
-    id: number
+    id: string
     name: string
   }
 }

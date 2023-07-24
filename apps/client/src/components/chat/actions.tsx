@@ -8,7 +8,7 @@ export async function loadMoreMessages(lastId: number) {
     content: `Message ${i + lastId}`,
     createdAt: new Date(),
     sender: {
-      id: (i + lastId) % 2,
+      id: `${(i + lastId) % 2}`,
       name: (i + lastId) % 2 ? 'John Doe' : 'Jane Doe'
     }
   }))

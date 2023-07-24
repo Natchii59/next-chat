@@ -13,7 +13,7 @@ import { UserAvatar } from '../user-avatar'
 
 interface FriendItemProps {
   friend: {
-    id: number
+    id: string
     name: string
     image?: string
   }

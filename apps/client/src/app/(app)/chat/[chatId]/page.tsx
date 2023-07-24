@@ -12,7 +12,7 @@ async function getUser(chatId: string) {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   return {
-    id: 1,
+    id: '1',
     name: 'John Doe'
   }
 }
@@ -21,12 +21,12 @@ async function getUser(chatId: string) {
 async function getMessages(chatId: string) {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
-  return [...Array(40)].map((_, i) => ({
+  return Array.from({ length: 40 }).map((_, i) => ({
     id: i,
     content: `Message ${i}`,
     createdAt: new Date(),
     sender: {
-      id: i % 2,
+      id: `${i % 2}`,
       name: i % 2 ? 'John Doe' : 'Jane Doe'
     }
   }))

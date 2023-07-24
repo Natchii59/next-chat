@@ -1,15 +1,12 @@
 import { SidebarUserItem } from './sidebar-user-item'
 
 async function getUsersSidebar() {
-  const users = [
-    { id: 1, name: 'John' },
-    { id: 2, name: 'Jane' },
-    { id: 3, name: 'Jack' }
-  ]
-
   await new Promise(resolve => setTimeout(resolve, 1000))
 
-  return users
+  return Array.from({ length: 30 }).map((_, index) => ({
+    id: `${index}`,
+    name: `User ${index}`
+  }))
 }
 
 export async function SidebarUsers() {

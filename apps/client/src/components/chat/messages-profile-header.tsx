@@ -2,7 +2,7 @@ import { UserAvatar } from '../user-avatar'
 
 interface MessagesProfileHeaderProps {
   user: {
-    id: number
+    id: string
     name: string
   }
 }

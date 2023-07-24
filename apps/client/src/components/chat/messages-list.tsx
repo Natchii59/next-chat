@@ -13,14 +13,14 @@ interface Message {
   content: string
   createdAt: Date
   sender: {
-    id: number
+    id: string
     name: string
   }
 }
 
 interface MessagesListProps {
   user: {
-    id: number
+    id: string
     name: string
   }
   baseMessages: Message[]

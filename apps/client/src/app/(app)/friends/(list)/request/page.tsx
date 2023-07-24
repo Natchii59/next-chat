@@ -2,17 +2,17 @@ import { FriendRequestItem } from '@/components/friends/friend-request-item'
 import { Icons } from '@/components/icons'
 
 interface FriendRequest {
-  id: number
+  id: string
   name: string
 }
 
 async function getFriendRequests(): Promise<FriendRequest[]> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
-  return [
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Doe' }
-  ]
+  return Array.from({ length: 5 }).map((_, index) => ({
+    id: `${index}`,
+    name: `Friend ${index}`
+  }))
 }
 
 export default async function FriendRequestPage() {

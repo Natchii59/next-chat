@@ -1,3 +1,4 @@
+import type { User } from '@prisma/client'
 import { Avatar, AvatarFallback, AvatarImage, AvatarProps, cn } from 'ui'
 
 import { Icons } from '@/components/icons'
@@ -6,10 +7,7 @@ interface UserAvatarProps extends AvatarProps {
   classNameImage?: string
   classNameFallback?: string
   classNameIcon?: string
-  user: {
-    name: string
-    image?: string
-  }
+  user: Pick<User, 'name' | 'image'>
 }
 
 export function UserAvatar({

@@ -1,13 +1,12 @@
+import type { User } from '@prisma/client'
+
 import { UserAvatar } from '../user-avatar'
 
 interface Message {
   id: number
   content: string
   createdAt: Date
-  sender: {
-    id: string
-    name: string
-  }
+  sender: Pick<User, 'id' | 'username' | 'name' | 'image'>
 }
 
 interface MessagesItemProps {

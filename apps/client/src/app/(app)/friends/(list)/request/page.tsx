@@ -1,17 +1,18 @@
+import type { User } from '@prisma/client'
+
 import { FriendRequestItem } from '@/components/friends/friend-request-item'
 import { Icons } from '@/components/icons'
 
-interface FriendRequest {
-  id: string
-  name: string
-}
+type FriendRequest = Pick<User, 'id' | 'name' | 'username' | 'image'>
 
 async function getFriendRequests(): Promise<FriendRequest[]> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   return Array.from({ length: 5 }).map((_, index) => ({
     id: `${index}`,
-    name: `Friend ${index}`
+    username: `friend${index}`,
+    name: `Friend ${index}`,
+    image: null
   }))
 }
 

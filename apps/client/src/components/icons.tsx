@@ -1,5 +1,6 @@
 import {
   Check,
+  ChevronLeft,
   Chrome,
   Github,
   Laptop,
@@ -31,5 +32,6 @@ export const Icons = {
   send: Send,
   spinner: Loader2,
   github: Github,
-  google: Chrome
+  google: Chrome,
+  chevronLeft: ChevronLeft
 }

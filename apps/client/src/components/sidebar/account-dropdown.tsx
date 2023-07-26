@@ -1,29 +1,13 @@
-import {
-  buttonVariants,
-  cn,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from 'ui'
+import { buttonVariants, cn, DropdownMenu, DropdownMenuTrigger } from 'ui'
 
 import { Icons } from '@/components/icons'
 import { UserAvatar } from '@/components/user-avatar'
+import { getCurrentUser } from '@/lib/session'
 
-import { ThemeModeToggle } from './theme-mode-toggle'
-
-async function getAccount() {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-
-  return {
-    name: 'John Doe',
-    image: undefined
-  }
-}
+import { AccountDropdownContent } from './account-dropdown-content'
 
 export async function AccountDropdown() {
-  const account = await getAccount()
+  const currentUser = await getCurrentUser()
 
   return (
     <DropdownMenu>
@@ -33,23 +17,23 @@ export async function AccountDropdown() {
           'group h-auto justify-start gap-2'
         )}
       >
-        <UserAvatar user={account} />
-        <span className='flex-auto text-left'>{account.name}</span>
+        <UserAvatar user={currentUser} />
+        <div className='flex flex-auto flex-col items-start'>
+          {currentUser.name?.length ? (
+            <>
+              <span className='font-semibold'>{currentUser.name}</span>
+              <span className='text-xs text-muted-foreground'>
+                {currentUser.username}
+              </span>
+            </>
+          ) : (
+            <span>{currentUser.username}</span>
+          )}
+        </div>
         <Icons.moreHorizontal className='h-4 w-4' />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className='w-[var(--radix-dropdown-menu-trigger-width)]'>
-        <ThemeModeToggle />
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Icons.settings className='mr-2 h-4 w-4' />
-          <span>Settings</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem className='text-red-500 focus:text-red-500'>
-          <Icons.logout className='mr-2 h-4 w-4' />
-          <span>Log out</span>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
+      <AccountDropdownContent />
     </DropdownMenu>
   )
 }

@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const config = {
   reactStrictMode: true,
   transpilePackages: ['ui'],
   experimental: {
@@ -11,7 +11,14 @@ module.exports = {
         source: '/',
         destination: '/friends/all',
         permanent: true
+      },
+      {
+        source: '/settings',
+        destination: '/settings/profile',
+        permanent: true
       }
     ]
   }
 }
+
+export default config

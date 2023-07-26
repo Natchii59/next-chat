@@ -1,10 +1,9 @@
+import type { User } from '@prisma/client'
+
 import { FriendPendingItem } from '@/components/friends/friend-pending-item'
 import { Icons } from '@/components/icons'
 
-interface FriendPending {
-  id: string
-  name: string
-}
+type FriendPending = Pick<User, 'id' | 'name' | 'username' | 'image'>
 
 async function getFriendPending(): Promise<FriendPending[]> {
   await new Promise(resolve => setTimeout(resolve, 1000))

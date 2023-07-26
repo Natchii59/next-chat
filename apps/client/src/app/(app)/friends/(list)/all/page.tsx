@@ -1,17 +1,18 @@
+import type { User } from '@prisma/client'
+
 import { FriendItem } from '@/components/friends/friend-item'
 import { Icons } from '@/components/icons'
 
-interface Friends {
-  id: string
-  name: string
-}
+type Friend = Pick<User, 'id' | 'name' | 'username' | 'image'>
 
-async function getFriends(): Promise<Friends[]> {
+async function getFriends(): Promise<Friend[]> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   return Array.from({ length: 30 }).map((_, index) => ({
     id: `${index}`,
-    name: `Friend ${index}`
+    username: `friend${index}`,
+    name: `Friend ${index}`,
+    image: null
   }))
 }
 

@@ -2,15 +2,13 @@
 
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import type { User } from '@prisma/client'
 import { buttonVariants, cn } from 'ui'
 
 import { UserAvatar } from '@/components/user-avatar'
 
 interface SidebarUserProps {
-  user: {
-    id: string
-    name: string
-  }
+  user: Pick<User, 'id' | 'name' | 'username' | 'image'>
 }
 
 export function SidebarUserItem({ user }: SidebarUserProps) {

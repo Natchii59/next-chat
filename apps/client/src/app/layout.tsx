@@ -4,10 +4,10 @@ import localFont from 'next/font/local'
 
 import 'ui/styles/globals.css'
 
-import { cn } from 'ui'
+import { cn, Toaster } from 'ui'
 
 import { Analytics } from '@/components/analytics'
-import { ThemeProvider } from '@/components/theme-provider'
+import { Providers } from '@/components/providers'
 import { siteConfig } from '@/config/site'
 
 const fontSans = FontSans({
@@ -56,10 +56,11 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           fontHeading.variable
         )}
       >
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+        <Providers>
           {children}
           <Analytics />
-        </ThemeProvider>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )

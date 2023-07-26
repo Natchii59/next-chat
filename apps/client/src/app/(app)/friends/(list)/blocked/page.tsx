@@ -1,17 +1,18 @@
+import type { User } from '@prisma/client'
+
 import { FriendBlockedItem } from '@/components/friends/friend-blocked-item'
 import { Icons } from '@/components/icons'
 
-interface FriendBlocked {
-  id: string
-  name: string
-}
+type FriendBlocked = Pick<User, 'id' | 'name' | 'username' | 'image'>
 
 async function getFriendBlocked(): Promise<FriendBlocked[]> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   return Array.from({ length: 10 }).map((_, index) => ({
     id: `${index}`,
-    name: `Friend ${index}`
+    username: `friend${index}`,
+    name: `Friend ${index}`,
+    image: null
   }))
 }
 

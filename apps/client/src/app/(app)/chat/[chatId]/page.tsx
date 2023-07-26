@@ -1,3 +1,5 @@
+import type { User } from '@prisma/client'
+
 import { ChatInput } from '@/components/chat/chat-input'
 import { MessagesList } from '@/components/chat/messages-list'
 
@@ -7,18 +9,27 @@ interface Props {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
-async function getUser(chatId: string) {
+interface Message {
+  id: number
+  content: string
+  createdAt: Date
+  sender: Pick<User, 'id' | 'username' | 'name' | 'image'>
+}
+
+async function getUser(): Promise<
+  Pick<User, 'id' | 'username' | 'name' | 'image'>
+> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   return {
     id: '1',
-    name: 'John Doe'
+    username: 'johndoe',
+    name: 'John Doe',
+    image: null
   }
 }
 
-// eslint-disable-next-line no-unused-vars
-async function getMessages(chatId: string) {
+async function getMessages(): Promise<Message[]> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   return Array.from({ length: 40 }).map((_, i) => ({
@@ -27,14 +38,16 @@ async function getMessages(chatId: string) {
     createdAt: new Date(),
     sender: {
       id: `${i % 2}`,
-      name: i % 2 ? 'John Doe' : 'Jane Doe'
+      username: i % 2 ? 'johndoe' : 'janedoe',
+      name: i % 2 ? 'John Doe' : 'Jane Doe',
+      image: null
     }
   }))
 }
 
-export default async function ChatPage({ params }: Props) {
-  const user = await getUser(params.chatId)
-  const messages = await getMessages(params.chatId)
+export default async function ChatPage({}: Props) {
+  const user = await getUser()
+  const messages = await getMessages()
 
   return (
     <>

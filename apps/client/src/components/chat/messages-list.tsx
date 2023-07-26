@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import type { User } from '@prisma/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Skeleton } from 'ui'
 
@@ -12,17 +13,11 @@ interface Message {
   id: number
   content: string
   createdAt: Date
-  sender: {
-    id: string
-    name: string
-  }
+  sender: Pick<User, 'id' | 'username' | 'name' | 'image'>
 }
 
 interface MessagesListProps {
-  user: {
-    id: string
-    name: string
-  }
+  user: Pick<User, 'id' | 'username' | 'name' | 'image'>
   baseMessages: Message[]
 }
 

@@ -1,10 +1,9 @@
+import type { User } from '@prisma/client'
+
 import { UserAvatar } from '../user-avatar'
 
 interface MessagesProfileHeaderProps {
-  user: {
-    id: string
-    name: string
-  }
+  user: Pick<User, 'id' | 'username' | 'name' | 'image'>
 }
 
 export function MessagesProfileHeader({ user }: MessagesProfileHeaderProps) {

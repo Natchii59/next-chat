@@ -22,8 +22,8 @@
     "next": "^13.4.12",
     "prettier": "^3.0.0",
     "prettier-config": "workspace:*",
-    "turbo": "^1.10.9",
-    "vercel": "^31.0.4"
+    "turbo": "^1.10.12",
+    "vercel": "^31.1.1"
   },
   "packageManager": "pnpm@8.6.7"
 }

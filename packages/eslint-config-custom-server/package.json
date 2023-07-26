@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": ".eslintrc",
   "dependencies": {
-    "eslint-config-turbo": "^1.10.9"
+    "eslint-config-turbo": "^1.10.12"
   },
   "publishConfig": {
     "access": "public"

@@ -1,3 +1,5 @@
+import type { User } from '@prisma/client'
+
 import { UserAvatar } from '@/components/user-avatar'
 
 import { NavbarChatOptions } from './navbar-options'
@@ -6,13 +8,19 @@ interface NavbarChatProps {
   chatId: string
 }
 
-async function getNavbarChatData(chatId: string) {
+interface NavbarChatData {
+  id: string
+  user: Pick<User, 'name' | 'image'>
+}
+
+async function getNavbarChatData(chatId: string): Promise<NavbarChatData> {
   await new Promise(resolve => setTimeout(resolve, 1000))
 
   return {
     id: chatId,
     user: {
-      name: 'John Doe'
+      name: 'John Doe',
+      image: null
     }
   }
 }

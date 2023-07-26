@@ -1,3 +1,4 @@
+import type { User } from '@prisma/client'
 import {
   buttonVariants,
   cn,
@@ -12,11 +13,7 @@ import { Icons } from '../icons'
 import { UserAvatar } from '../user-avatar'
 
 interface FriendItemProps {
-  friend: {
-    id: string
-    name: string
-    image?: string
-  }
+  friend: Pick<User, 'id' | 'name' | 'username' | 'image'>
 }
 
 export function FriendPendingItem({ friend }: FriendItemProps) {

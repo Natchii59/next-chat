@@ -1,13 +1,11 @@
-import { Sidebar } from '@/components/sidebar'
+import { Appbar } from '@/components/appbar'
 
-export default function ChatLayout({ children }: React.PropsWithChildren) {
+export default function AppLayout({ children }: React.PropsWithChildren) {
   return (
-    <div className='grid h-full grid-cols-4'>
-      <div className='col-span-1'>
-        <Sidebar />
-      </div>
+    <div className='container relative'>
+      <Appbar />
 
-      <div className='col-span-3'>{children}</div>
+      <main className='pt-16'>{children}</main>
     </div>
   )
 }

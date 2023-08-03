@@ -1,16 +1,16 @@
 import { Separator } from 'ui'
 
-import { LanguageForm } from './language-form'
+import { AppearanceForm } from './appearance-form'
 
-export default function LanguageSettingsPage() {
+export default async function AppearanceSettingsPage() {
   return (
     <div className='space-y-4'>
       <p className='text-center text-sm text-muted-foreground'>
-        Change the language of the app.
+        Update your appearance settings.
       </p>
 
       <Separator />
-      <LanguageForm />
+      <AppearanceForm />
     </div>
   )
 }

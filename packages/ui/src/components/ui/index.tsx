@@ -1,5 +1,6 @@
 export * from './avatar'
 export * from './button'
+export * from './card'
 export * from './context-menu'
 export * from './dropdown-menu'
 export * from './form'

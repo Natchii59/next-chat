@@ -12,13 +12,14 @@ interface UserAvatarProps extends AvatarProps {
 
 export function UserAvatar({
   user,
+  className,
   classNameImage,
   classNameFallback,
   classNameIcon,
   ...props
 }: UserAvatarProps) {
   return (
-    <Avatar {...props}>
+    <Avatar className={cn('rounded-md', className)} {...props}>
       {user.image ? (
         <AvatarImage
           alt='Picture'

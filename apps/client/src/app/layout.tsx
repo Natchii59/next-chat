@@ -39,16 +39,15 @@ export const metadata: Metadata = {
       url: 'https://natchi.fr'
     }
   ],
-  creator: 'Natchi',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' }
-  ]
+  creator: 'Natchi'
 }
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang='fr' suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
+      <head>
+        <meta name='theme-color' content='var(--background)' />
+      </head>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',

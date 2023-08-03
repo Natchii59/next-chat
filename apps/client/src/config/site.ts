@@ -1,7 +1,7 @@
 import { SiteConfig } from '@/types'
 
 export const siteConfig: SiteConfig = {
-  name: 'Next Chat',
+  name: 'Threads',
   description: 'IDK',
   url: 'https://natchi.fr',
   links: {

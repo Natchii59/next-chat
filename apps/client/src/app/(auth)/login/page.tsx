@@ -9,7 +9,7 @@ export default async function LoginPage() {
   if (session) redirect('/')
 
   return (
-    <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
+    <div className='container flex flex-col justify-center gap-y-6'>
       <div className='flex flex-col space-y-2 text-center'>
         <h1 className='text-2xl font-semibold tracking-tight'>Welcome back</h1>
         <p className='text-sm text-muted-foreground'>

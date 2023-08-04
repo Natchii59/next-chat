@@ -17,11 +17,9 @@ export const env = createEnv({
     EMAIL_FROM: z.string().min(1)
   },
   client: {
-    NEXT_PUBLIC_APP_URL: z.string().url().optional(),
-    VERCEL_ENV: z.string().optional()
+    NEXT_PUBLIC_APP_URL: z.string().url().optional()
   },
   experimental__runtimeEnv: {
-    NEXT_PUBLIC_APP_URL: process.env['NEXT_PUBLIC_APP_URL'],
-    VERCEL_ENV: process.env['VERCEL_ENV']
+    NEXT_PUBLIC_APP_URL: process.env['NEXT_PUBLIC_APP_URL']
   }
 })

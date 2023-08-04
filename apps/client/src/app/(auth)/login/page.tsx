@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { env } from '@/env.mjs'
 import { getServerSession } from 'next-auth'
 
 import { AuthForm } from '@/components/auth/auth-form'
@@ -17,7 +18,7 @@ export default async function LoginPage() {
         </p>
       </div>
 
-      <AuthForm />
+      <AuthForm isPreviewMode={env.VERCEL_ENV === 'preview'} />
     </div>
   )
 }

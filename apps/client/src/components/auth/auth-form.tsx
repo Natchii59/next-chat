@@ -1,5 +1,6 @@
 'use client'
 
+import { env } from 'process'
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -7,6 +8,7 @@ import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import {
   Button,
+  cn,
   Form,
   FormControl,
   FormField,
@@ -27,6 +29,8 @@ const formSchema = z.object({
 })
 
 export function AuthForm() {
+  const IS_PREVIEW = env.VERCEL_ENV !== 'preview'
+
   const searchParams = useSearchParams()
 
   const [isEmailLoading, setIsEmailLoading] = useState<boolean>(false)
@@ -103,16 +107,17 @@ export function AuthForm() {
         </div>
       </div>
 
-      <div className='grid grid-cols-2 gap-2'>
+      <div className={cn('grid grid-cols-2 gap-2', IS_PREVIEW && 'relative')}>
         <Button
           variant='outline'
           onClick={() => {
+            if (IS_PREVIEW) return
             setIsGithubLoading(true)
             signIn('github', {
               callbackUrl: searchParams.get('callbackUrl') ?? '/'
             })
           }}
-          disabled={isGithubLoading || isGoogleLoading}
+          disabled={IS_PREVIEW || isGithubLoading || isGoogleLoading}
         >
           {isGithubLoading ? (
             <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />
@@ -125,12 +130,13 @@ export function AuthForm() {
         <Button
           variant='outline'
           onClick={() => {
+            if (IS_PREVIEW) return
             setIsGoogleLoading(true)
             signIn('google', {
               callbackUrl: searchParams.get('callbackUrl') ?? '/'
             })
           }}
-          disabled={isGithubLoading || isGoogleLoading}
+          disabled={IS_PREVIEW || isGithubLoading || isGoogleLoading}
         >
           {isGoogleLoading ? (
             <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />
@@ -139,6 +145,14 @@ export function AuthForm() {
           )}{' '}
           Google
         </Button>
+
+        {IS_PREVIEW && (
+          <div className='absolute inset-0 flex cursor-not-allowed items-center justify-center rounded-md border bg-muted/90'>
+            <span className='text-center text-xs font-medium leading-tight sm:text-base'>
+              Sign in with OAuth is not available in preview mode
+            </span>
+          </div>
+        )}
       </div>
     </div>
   )

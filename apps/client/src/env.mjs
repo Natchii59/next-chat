@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 export const env = createEnv({
   server: {
+    VERCEL_ENV: z.string().optional(),
     NEXTAUTH_URL: z.string().url().optional(),
     NEXTAUTH_SECRET: z.string().min(1),
     GITHUB_CLIENT_ID: z.string().min(1),
@@ -16,9 +17,11 @@ export const env = createEnv({
     EMAIL_FROM: z.string().min(1)
   },
   client: {
-    NEXT_PUBLIC_APP_URL: z.string().url()
+    NEXT_PUBLIC_APP_URL: z.string().url().optional(),
+    VERCEL_ENV: z.string().optional()
   },
   experimental__runtimeEnv: {
-    NEXT_PUBLIC_APP_URL: process.env['NEXT_PUBLIC_APP_URL']
+    NEXT_PUBLIC_APP_URL: process.env['NEXT_PUBLIC_APP_URL'],
+    VERCEL_ENV: process.env['VERCEL_ENV']
   }
 })

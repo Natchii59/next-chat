@@ -14,16 +14,19 @@ export function SettingsLink({ link }: SettingsLinkProps) {
       href={link.href}
       className={cn(
         buttonVariants({ variant: 'outline' }),
-        'relative flex h-auto flex-col items-start justify-start gap-1 p-3 font-normal'
+        'flex h-auto items-center justify-start gap-2 p-3 font-normal'
       )}
     >
-      <h3 className='flex items-center gap-2 text-lg font-semibold leading-none'>
-        <link.icon className='h-[18px] w-[18px]' />
-        <span>{link.title}</span>
-      </h3>
-      <p className='text-sm text-muted-foreground'>{link.description}</p>
+      <link.icon className='h-5 w-5' />
 
-      <Icons.chevronRight className='absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground' />
+      <div className='flex-auto'>
+        <h3 className='text-base font-semibold leading-tight'>{link.title}</h3>
+        <p className='text-sm leading-tight text-muted-foreground'>
+          {link.description}
+        </p>
+      </div>
+
+      <Icons.chevronRight className='h-5 w-5 text-muted-foreground' />
     </Link>
   )
 }

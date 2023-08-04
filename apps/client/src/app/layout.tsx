@@ -39,7 +39,12 @@ export const metadata: Metadata = {
       url: 'https://natchi.fr'
     }
   ],
-  creator: 'Natchi'
+  creator: 'Natchi',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    userScalable: false
+  }
 }
 
 export default function RootLayout({ children }: React.PropsWithChildren) {

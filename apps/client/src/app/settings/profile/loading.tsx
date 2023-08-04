@@ -11,7 +11,7 @@ function ItemLoading() {
 
 export default function ProfileSettingsLoading() {
   return (
-    <div className='space-y-8'>
+    <div className='space-y-6'>
       {Array.from({ length: 5 }).map((_, i) => (
         <ItemLoading key={i} />
       ))}

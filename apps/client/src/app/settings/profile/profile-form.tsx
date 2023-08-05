@@ -31,7 +31,8 @@ const profileFormSchema = z.object({
     })
     .max(30, {
       message: 'Username must not be longer than 30 characters.'
-    }),
+    })
+    .toLowerCase(),
   displayName: z.string().max(30, {
     message: 'Display name must not be longer than 30 characters.'
   })
@@ -98,7 +99,11 @@ export function ProfileForm({ user }: ProfileFormProps) {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder='Your username' {...field} />
+                <Input
+                  placeholder='Your username'
+                  className='lowercase'
+                  {...field}
+                />
               </FormControl>
               <FormDescription>This is your public username.</FormDescription>
               <FormMessage />

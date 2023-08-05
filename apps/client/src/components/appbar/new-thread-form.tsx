@@ -27,6 +27,7 @@ const threadFormSchema = z.object({
     .max(280, {
       message: 'Your thread cannot be longer than 280 characters.'
     })
+    .trim()
 })
 
 export type ThreadFormValues = z.infer<typeof threadFormSchema>
@@ -65,7 +66,7 @@ export function NewThreadForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <TextareaAutosize {...field} />
+                <TextareaAutosize maxRows={10} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

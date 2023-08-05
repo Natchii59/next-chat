@@ -66,7 +66,11 @@ export function NewThreadForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <TextareaAutosize maxRows={10} {...field} />
+                <TextareaAutosize
+                  maxRows={10}
+                  placeholder='Write what you want...'
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

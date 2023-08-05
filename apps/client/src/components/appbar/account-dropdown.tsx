@@ -11,7 +11,7 @@ export async function AccountDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className={cn(buttonVariants({ size: 'icon', variant: 'outline' }))}
+        className={cn(buttonVariants({ size: 'icon', variant: 'secondary' }))}
       >
         <UserAvatar user={currentUser} />
       </DropdownMenuTrigger>

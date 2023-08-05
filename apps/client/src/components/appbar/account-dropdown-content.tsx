@@ -28,14 +28,14 @@ export function AccountDropdownContent({ user }: AccountDropdownContentProps) {
         <Link
           href={`/user/${user.username}`}
           className={cn(
-            'flex min-h-[2rem] min-w-[170px] max-w-[200px] flex-col !items-start leading-none'
+            'flex min-w-[170px] max-w-[200px] flex-col !items-start justify-center gap-1 leading-tight'
           )}
         >
           <p className='w-full truncate font-medium'>
             {user.name ?? user.username}
           </p>
           {user.name && (
-            <p className='w-full truncate text-sm text-muted-foreground'>
+            <p className='w-full truncate text-muted-foreground'>
               {user.username}
             </p>
           )}

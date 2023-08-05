@@ -27,7 +27,7 @@ export function UserAvatar({
           className={cn(classNameImage)}
         />
       ) : (
-        <AvatarFallback className={cn(classNameFallback)}>
+        <AvatarFallback className={cn('rounded-md', classNameFallback)}>
           <span className='sr-only'>{user.name}</span>
           <Icons.user className={cn('h-4 w-4', classNameIcon)} />
         </AvatarFallback>

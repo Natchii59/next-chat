@@ -22,9 +22,12 @@ import { z } from 'zod'
 import { Icons } from '../icons'
 
 const formSchema = z.object({
-  email: z.string().email({
-    message: 'Please enter a valid email address'
-  })
+  email: z
+    .string()
+    .email({
+      message: 'Please enter a valid email address'
+    })
+    .toLowerCase()
 })
 
 interface AuthFormProps {
@@ -49,7 +52,7 @@ export function AuthForm({ isPreviewMode }: AuthFormProps) {
     setIsEmailLoading(true)
 
     const signInResult = await signIn('email', {
-      email: values.email.toLowerCase(),
+      email: values.email,
       redirect: false,
       callbackUrl: searchParams.get('callbackUrl') ?? '/'
     })

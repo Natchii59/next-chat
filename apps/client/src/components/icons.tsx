@@ -9,6 +9,7 @@ import {
   Loader2,
   LogOut,
   Moon,
+  MoreHorizontal,
   Paintbrush,
   Plus,
   Search,
@@ -16,7 +17,10 @@ import {
   Settings,
   Settings2,
   Sun,
+  Trash2,
   User,
+  UserPlus,
+  UserX,
   XCircle
 } from 'lucide-react'
 
@@ -32,6 +36,7 @@ export const Icons = {
   laptop: Laptop,
   logout: LogOut,
   moon: Moon,
+  moreHorizontal: MoreHorizontal,
   paintbrush: Paintbrush,
   plus: Plus,
   search: Search,
@@ -40,6 +45,9 @@ export const Icons = {
   settings2: Settings2,
   spinner: Loader2,
   sun: Sun,
-  timesCircle: XCircle,
-  user: User
+  xCircle: XCircle,
+  trash: Trash2,
+  user: User,
+  userPlus: UserPlus,
+  userX: UserX
 }

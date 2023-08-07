@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import {
@@ -18,6 +19,8 @@ import { z } from 'zod'
 
 import { Icons } from '@/components/icons'
 
+import { postThread } from './actions'
+
 const threadFormSchema = z.object({
   text: z
     .string()
@@ -33,6 +36,8 @@ const threadFormSchema = z.object({
 export type ThreadFormValues = z.infer<typeof threadFormSchema>
 
 export function NewThreadForm() {
+  const router = useRouter()
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const form = useForm<ThreadFormValues>({
@@ -46,15 +51,24 @@ export function NewThreadForm() {
   async function onSubmit(data: ThreadFormValues) {
     setIsLoading(true)
 
-    console.log(data)
-    // const result = await updateAccount(user.id, data)
+    const result = await postThread(data)
 
     setIsLoading(false)
+
+    if (!result.ok) {
+      return toast({
+        title: 'Something went wrong.',
+        description: 'Your thread could not be posted.',
+        variant: 'destructive'
+      })
+    }
 
     toast({
       title: 'Thread posted.',
       description: 'Your thread has been posted.'
     })
+
+    router.push(`/thread/${result.thread.id}`)
   }
 
   return (

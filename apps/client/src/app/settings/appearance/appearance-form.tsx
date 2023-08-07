@@ -22,6 +22,8 @@ import { z } from 'zod'
 import { Icons } from '@/components/icons'
 import { useMounted } from '@/hooks/use-mounted'
 
+import AppearanceSettingsLoading from './loading'
+
 const appearanceFormSchema = z.object({
   theme: z.enum(['light', 'dark', 'system'], {
     required_error: 'Please select a theme.'
@@ -57,7 +59,7 @@ export function AppearanceForm() {
     })
   }
 
-  if (!mounted) return null
+  if (!mounted) return <AppearanceSettingsLoading />
 
   return (
     <Form {...form}>

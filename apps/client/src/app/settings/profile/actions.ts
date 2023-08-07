@@ -10,7 +10,7 @@ interface UpdateProfileAdditionalData {
 
 interface UpdateProfileResult {
   ok: boolean
-  errorField?: 'displayName' | 'username' | 'root'
+  errorField?: 'name' | 'username' | 'root'
   errorMessage?: string
 }
 
@@ -38,7 +38,7 @@ export async function updateProfile(
     await db.user.update({
       where: { id: userId },
       data: {
-        name: profile.displayName.length > 0 ? profile.displayName : null,
+        name: profile.name.length > 0 ? profile.name : null,
         username: profile.username
       }
     })

@@ -9,8 +9,9 @@ import {
   DialogTitle
 } from 'ui'
 
-import { ButtonTooltip } from '../button-tooltip'
-import { Icons } from '../icons'
+import { ButtonTooltip } from '@/components/button-tooltip'
+import { Icons } from '@/components/icons'
+
 import { NewThreadForm } from './new-thread-form'
 
 export function NewThreadDialog() {

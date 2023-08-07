@@ -29,12 +29,15 @@ const profileFormSchema = z.object({
     .min(2, {
       message: 'Username must be at least 2 characters.'
     })
-    .max(30, {
-      message: 'Username must not be longer than 30 characters.'
+    .max(15, {
+      message: 'Username must not be longer than 15 characters.'
     })
-    .toLowerCase(),
-  displayName: z.string().max(30, {
-    message: 'Display name must not be longer than 30 characters.'
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message:
+        'Username must only contain alphanumeric characters and underscores.'
+    }),
+  name: z.string().max(30, {
+    message: 'Name must not be longer than 30 characters.'
   })
 })
 
@@ -53,7 +56,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
       username: user.username,
-      displayName: user.name ?? ''
+      name: user.name ?? ''
     },
     mode: 'onChange'
   })
@@ -99,11 +102,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='Your username'
-                  className='lowercase'
-                  {...field}
-                />
+                <Input placeholder='Your username' {...field} />
               </FormControl>
               <FormDescription>This is your public username.</FormDescription>
               <FormMessage />
@@ -112,15 +111,15 @@ export function ProfileForm({ user }: ProfileFormProps) {
         />
         <FormField
           control={form.control}
-          name='displayName'
+          name='name'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Display Name</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input placeholder='Your name' {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name. It can be your real name or a
+                This is your public name. It can be your real name or a
                 pseudonym.
               </FormDescription>
               <FormMessage />

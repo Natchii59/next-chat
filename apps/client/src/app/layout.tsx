@@ -44,18 +44,16 @@ export const metadata: Metadata = {
     width: 'device-width',
     initialScale: 1,
     userScalable: false
-  }
+  },
+  themeColor: 'var(--background)'
 }
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <head>
-        <meta name='theme-color' content='var(--background)' />
-      </head>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'min-h-screen font-sans antialiased',
           fontSans.variable,
           fontHeading.variable
         )}

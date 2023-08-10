@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
@@ -20,6 +20,7 @@ import {
 import { z } from 'zod'
 
 import { Icons } from '../icons'
+import { getSessionAuth } from './actions'
 
 const formSchema = z.object({
   email: z
@@ -35,11 +36,17 @@ interface AuthFormProps {
 }
 
 export function AuthForm({ isPreviewMode }: AuthFormProps) {
+  const router = useRouter()
   const searchParams = useSearchParams()
 
   const [isEmailLoading, setIsEmailLoading] = useState<boolean>(false)
   const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
+
+  const [emailSending, setEmailSending] = useState<boolean>(false)
+  const [successToast, setSuccessToast] = useState<ReturnType<
+    typeof toast
+  > | null>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -54,7 +61,7 @@ export function AuthForm({ isPreviewMode }: AuthFormProps) {
     const signInResult = await signIn('email', {
       email: values.email,
       redirect: false,
-      callbackUrl: searchParams.get('callbackUrl') ?? '/'
+      callbackUrl: '/auth/email/confirm'
     })
 
     setIsEmailLoading(false)
@@ -67,11 +74,42 @@ export function AuthForm({ isPreviewMode }: AuthFormProps) {
       })
     }
 
-    return toast({
-      title: 'Check your email',
-      description: 'We sent you a login link. Be sure to check your spam too.'
-    })
+    setEmailSending(true)
+
+    setSuccessToast(
+      toast({
+        title: 'Check your email',
+        description:
+          'We sent you a Magic Link to sign in. Be sure to check your spam too.'
+      })
+    )
   }
+
+  useEffect(() => {
+    let interval: NodeJS.Timer
+
+    if (emailSending) {
+      interval = setInterval(async () => {
+        const session = await getSessionAuth()
+
+        if (session) {
+          router.push(searchParams.get('callbackUrl') ?? '/')
+          setEmailSending(false)
+          if (successToast) {
+            successToast.update({
+              id: successToast.id,
+              title: 'You are now signed in.',
+              description: 'Welcome back!'
+            })
+          }
+        }
+      }, 1000)
+    }
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [emailSending, router, searchParams, successToast])
 
   return (
     <div className='grid gap-6'>

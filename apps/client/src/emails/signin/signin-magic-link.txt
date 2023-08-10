@@ -1,0 +1,17 @@
+SIGN IN TO THREADS
+
+Hey 👋,
+
+You're receiving this email because you (or someone else) requested a sign in
+link for your account.
+
+This link will expire in 1 hour.
+
+Sign in with Magic Link [{{signin_url}}]
+
+Confirmation of this request will log you in securely.
+
+--------------------------------------------------------------------------------
+
+If you can't click the button or don't see it correctly, you can copy and paste
+the full link below into your browser: {{signin_url}}

@@ -56,7 +56,7 @@ export function AccountDropdownContent({ user }: AccountDropdownContentProps) {
         onClick={e => {
           e.preventDefault()
           setIsSignOutLoading(true)
-          signOut({ callbackUrl: '/login' })
+          signOut({ callbackUrl: '/sign-in' })
         }}
         className='text-red-500 focus:text-red-500'
       >

@@ -7,7 +7,7 @@ export async function getCurrentUser() {
   const session = await getServerSession(authOptions)
 
   if (!session?.user) {
-    redirect('/login')
+    redirect('/sign-in')
   }
 
   return session.user

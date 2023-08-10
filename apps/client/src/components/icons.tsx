@@ -1,5 +1,6 @@
 import {
   Bell,
+  CheckCircle2,
   ChevronLeft,
   ChevronRight,
   Chrome,
@@ -28,6 +29,7 @@ export type { LucideIcon as IconType } from 'lucide-react'
 
 export const Icons = {
   bell: Bell,
+  checkCircle: CheckCircle2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   google: Chrome,

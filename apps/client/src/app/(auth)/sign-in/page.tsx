@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 
 import { AuthForm } from '@/components/auth/auth-form'
 
-export default async function LoginPage() {
+export default async function SignInPage() {
   const session = await getServerSession()
 
   if (session) redirect('/')

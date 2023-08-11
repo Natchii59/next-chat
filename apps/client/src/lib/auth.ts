@@ -66,7 +66,10 @@ export const authOptions: AuthOptions = {
 
         const result = await transport.sendMail({
           to: identifier,
-          from: env.EMAIL_FROM,
+          from: {
+            name: env.EMAIL_FROM_NAME,
+            address: env.EMAIL_FROM_ADDRESS
+          },
           subject: `Sign in to ${urlFormat.host}`,
           html: signInHtmlTemplate({
             signin_url: url

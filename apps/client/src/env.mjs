@@ -14,7 +14,8 @@ export const env = createEnv({
     EMAIL_SERVER_PASSWORD: z.string().min(1),
     EMAIL_SERVER_HOST: z.string().min(1),
     EMAIL_SERVER_PORT: z.string().min(1),
-    EMAIL_FROM: z.string().min(1)
+    EMAIL_FROM_NAME: z.string().min(1),
+    EMAIL_FROM_ADDRESS: z.string().min(1)
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().url().optional()

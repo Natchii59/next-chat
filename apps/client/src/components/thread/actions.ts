@@ -1,11 +1,19 @@
 'use server'
 
+import { ThreadWithFields } from '@/types'
+
 import { THREADS_FETCH_COUNT } from '@/lib/constants'
 import { db } from '@/lib/db'
 import { getCurrentUser } from '@/lib/session'
 
-export async function threadPagination(lastId: string) {
-  console.log('pagination called')
+interface ThreadPaginationResult {
+  threads: ThreadWithFields[]
+  hasMore: boolean
+}
+
+export async function threadPagination(
+  lastId: string
+): Promise<ThreadPaginationResult> {
   const threads = await db.thread.findMany({
     where: {
       id: {
@@ -17,7 +25,12 @@ export async function threadPagination(lastId: string) {
       createdAt: 'desc'
     },
     include: {
-      author: true
+      author: true,
+      likes: {
+        select: {
+          userId: true
+        }
+      }
     }
   })
 
@@ -29,13 +42,13 @@ export async function threadPagination(lastId: string) {
   }
 }
 
-interface PostThreadResult {
+interface DeleteThreadResult {
   ok: boolean
 }
 
 export async function deleteThread(
   threadId: string
-): Promise<PostThreadResult> {
+): Promise<DeleteThreadResult> {
   try {
     const currentUser = await getCurrentUser()
 
@@ -48,7 +61,43 @@ export async function deleteThread(
 
     return { ok: true }
   } catch (error) {
-    console.log(error)
+    console.error(error)
+    return { ok: false }
+  }
+}
+
+interface LikeThreadResult {
+  ok: boolean
+}
+
+export async function likeThread(
+  threadId: string,
+  isLiked: boolean
+): Promise<LikeThreadResult> {
+  try {
+    const currentUser = await getCurrentUser()
+
+    if (isLiked) {
+      await db.threadLike.delete({
+        where: {
+          threadId_userId: {
+            threadId,
+            userId: currentUser.id
+          }
+        }
+      })
+    } else {
+      await db.threadLike.create({
+        data: {
+          threadId,
+          userId: currentUser.id
+        }
+      })
+    }
+
+    return { ok: true }
+  } catch (error) {
+    console.error(error)
     return { ok: false }
   }
 }

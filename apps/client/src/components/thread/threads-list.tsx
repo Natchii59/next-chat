@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Thread, User } from '@prisma/client'
+import { ThreadWithFields } from '@/types'
+import { User } from '@prisma/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { THREADS_FETCH_COUNT } from '@/lib/constants'
@@ -10,15 +11,13 @@ import { threadPagination } from './actions'
 import { ThreadLoading } from './loading'
 import { ThreadItem } from './thread-item'
 
-type ThreadWithAuthor = Thread & { author: User }
-
 interface ThreadsListProps {
-  baseThreads: ThreadWithAuthor[]
+  baseThreads: ThreadWithFields[]
   currentUser: Pick<User, 'id'>
 }
 
 export function ThreadsList({ baseThreads, currentUser }: ThreadsListProps) {
-  const [threads, setThreads] = useState<ThreadWithAuthor[]>(baseThreads)
+  const [threads, setThreads] = useState<ThreadWithFields[]>(baseThreads)
   const [hasMore, setHasMore] = useState<boolean>(
     baseThreads.length === THREADS_FETCH_COUNT
   )
@@ -42,11 +41,7 @@ export function ThreadsList({ baseThreads, currentUser }: ThreadsListProps) {
       className='grid gap-4'
     >
       {threads.map(thread => (
-        <ThreadItem
-          key={thread.id}
-          thread={thread}
-          isCurrentUser={thread.author.id === currentUser.id}
-        />
+        <ThreadItem key={thread.id} thread={thread} currentUser={currentUser} />
       ))}
     </InfiniteScroll>
   )

@@ -1,3 +1,5 @@
+import { Thread, User } from '@prisma/client'
+
 export interface SiteConfig {
   name: string
   description: string
@@ -6,4 +8,9 @@ export interface SiteConfig {
     twitter: string
     github: string
   }
+}
+
+export type ThreadWithFields = Thread & {
+  author: User
+  likes: { userId: string }[]
 }

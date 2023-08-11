@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Thread, User } from '@prisma/client'
+import { ThreadWithFields } from '@/types'
+import { User } from '@prisma/client'
 import { Card, cn } from 'ui'
 
 import { formatDate } from '@/lib/date'
@@ -11,14 +12,15 @@ import { useMounted } from '@/hooks/use-mounted'
 
 import { UserAvatar } from '../user-avatar'
 import { ThreadLoading } from './loading'
+import { ThreadActionsButtons } from './thread-actions-buttons'
 import { ThreadActionsDropdown } from './thread-actions-dropdown'
 
 interface ThreadItemProps {
-  thread: Thread & { author: User }
-  isCurrentUser?: boolean
+  thread: ThreadWithFields
+  currentUser: Pick<User, 'id'>
 }
 
-export function ThreadItem({ thread, isCurrentUser }: ThreadItemProps) {
+export function ThreadItem({ thread, currentUser }: ThreadItemProps) {
   const mounted = useMounted()
   const router = useRouter()
 
@@ -61,7 +63,7 @@ export function ThreadItem({ thread, isCurrentUser }: ThreadItemProps) {
 
           <ThreadActionsDropdown
             thread={thread}
-            isCurrentUser={isCurrentUser}
+            isCurrentUser={thread.author.id === currentUser.id}
             setIsDeleted={setIsDeleted}
           />
         </div>
@@ -69,6 +71,8 @@ export function ThreadItem({ thread, isCurrentUser }: ThreadItemProps) {
         <p className='w-full min-w-0 whitespace-pre-line break-words'>
           {thread.text}
         </p>
+
+        <ThreadActionsButtons thread={thread} currentUser={currentUser} />
       </div>
     </Card>
   )

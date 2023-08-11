@@ -1,11 +1,11 @@
-import { Thread, User } from '@prisma/client'
+import { ThreadWithFields } from '@/types'
 
 import { ThreadsList } from '@/components/thread/threads-list'
 import { THREADS_FETCH_COUNT } from '@/lib/constants'
 import { db } from '@/lib/db'
 import { getCurrentUser } from '@/lib/session'
 
-async function getAllLastThreads(): Promise<(Thread & { author: User })[]> {
+async function getAllLastThreads(): Promise<ThreadWithFields[]> {
   const data = await db.thread.findMany({
     where: {
       createdAt: {
@@ -17,7 +17,12 @@ async function getAllLastThreads(): Promise<(Thread & { author: User })[]> {
       createdAt: 'desc'
     },
     include: {
-      author: true
+      author: true,
+      likes: {
+        select: {
+          userId: true
+        }
+      }
     }
   })
 

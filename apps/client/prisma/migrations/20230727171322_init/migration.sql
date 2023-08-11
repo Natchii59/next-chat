@@ -22,7 +22,7 @@ CREATE TABLE "users" (
     "name" TEXT,
     "username" TEXT NOT NULL,
     "email" TEXT,
-    "emailVerified" TIMESTAMP(3),
+    "email_verified" TIMESTAMP(3),
     "image" TEXT,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")

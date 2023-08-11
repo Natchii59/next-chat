@@ -3,10 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL") // uses connection pooling
-  directUrl         = env("DATABASE_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("DATABASE_URL_NON_POOLING") // used for migrations
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // uses connection pooling
+  directUrl = env("DATABASE_URL_NON_POOLING") // uses a direct connection
 }
 
 model Account {
@@ -34,11 +33,12 @@ model User {
   name          String?
   username      String    @unique @default(nanoid(15)) @db.VarChar(15)
   email         String?   @unique
-  emailVerified DateTime?
+  emailVerified DateTime? @map("email_verified")
   image         String?
 
   accounts Account[]
-  Thread   Thread[]
+  threads  Thread[]
+  likes    ThreadLike[]
 
   @@map("users")
 }
@@ -59,7 +59,19 @@ model Thread {
   updatedAt DateTime @updatedAt
 
   author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId String
+  authorId String @map("author_id")
+
+  likes ThreadLike[]
 
   @@map("threads")
+}
+
+model ThreadLike {
+  thread   Thread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  threadId String @map("thread_id")
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String @map("user_id")
+
+  @@id([threadId, userId])
+  @@map("threads_likes")
 }

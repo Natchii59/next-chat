@@ -1,6 +1,7 @@
 'use client'
 
 import { MouseEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { ThreadWithFields } from '@/types'
 import { User } from '@prisma/client'
 import { Button, cn, toast } from 'ui'
@@ -19,6 +20,7 @@ export function ThreadActionsButtons({
   thread,
   currentUser
 }: ThreadActionsButtonsProps) {
+  const router = useRouter()
   const [isLiked, setIsLiked] = useState<boolean>(
     thread.likes.some(l => l.userId === currentUser.id)
   )
@@ -32,17 +34,22 @@ export function ThreadActionsButtons({
 
     const result = await likeThread(thread.id, isLiked)
 
-    if (!result.ok)
+    if (!result.ok) {
+      setLikeLoading(false)
+
       return toast({
         title: 'Something went wrong',
         description: 'Your like was not saved. Please try again later.',
         variant: 'destructive'
       })
+    }
 
     setIsLiked(like => !like)
     setLikesCount(count => (isLiked ? count - 1 : count + 1))
 
     setLikeLoading(false)
+
+    router.refresh()
   }
 
   return (

@@ -38,8 +38,9 @@ export async function updateProfile(
     await db.user.update({
       where: { id: userId },
       data: {
+        username: profile.username,
         name: profile.name.length > 0 ? profile.name : null,
-        username: profile.username
+        bio: profile.bio.length > 0 ? profile.bio : null
       }
     })
 

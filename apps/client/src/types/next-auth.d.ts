@@ -8,6 +8,7 @@ declare module 'next-auth' {
     email: string | null
     name: string | null
     image: string | null
+    bio: string | null
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -18,6 +19,7 @@ declare module 'next-auth' {
       email: string | null
       name: string | null
       image: string | null
+      bio: string | null
     }
   }
 }
@@ -30,5 +32,7 @@ declare module 'next-auth/jwt' {
     email: string | null
     name: string | null
     picture: string | null
+    image: string | null
+    bio: string | null
   }
 }

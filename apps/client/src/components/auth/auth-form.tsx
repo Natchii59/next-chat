@@ -86,7 +86,7 @@ export function AuthForm({ isPreviewMode }: AuthFormProps) {
   }
 
   useEffect(() => {
-    let interval: NodeJS.Timer
+    let interval: NodeJS.Timeout
 
     if (emailSending) {
       interval = setInterval(async () => {

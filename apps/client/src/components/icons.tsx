@@ -13,6 +13,7 @@ import {
   MessageCircle,
   Moon,
   MoreHorizontal,
+  MoreVertical,
   Paintbrush,
   Plus,
   Repeat,
@@ -23,6 +24,7 @@ import {
   Sun,
   Trash2,
   User,
+  UserMinus,
   UserPlus,
   UserX,
   XCircle
@@ -44,6 +46,7 @@ export const Icons = {
   message: MessageCircle,
   moon: Moon,
   moreHorizontal: MoreHorizontal,
+  moreVertical: MoreVertical,
   paintbrush: Paintbrush,
   plus: Plus,
   repeat: Repeat,
@@ -55,6 +58,7 @@ export const Icons = {
   sun: Sun,
   trash: Trash2,
   user: User,
+  userMinus: UserMinus,
   userPlus: UserPlus,
   userX: UserX,
   xCircle: XCircle

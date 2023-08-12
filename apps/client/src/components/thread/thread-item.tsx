@@ -58,7 +58,7 @@ export function ThreadItem({ thread, currentUser }: ThreadItemProps) {
           </div>
 
           <p className='whitespace-nowrap text-muted-foreground'>
-            {formatDate(thread.createdAt, new Date())}
+            {formatDate(new Date(thread.createdAt), new Date())}
           </p>
 
           <ThreadActionsDropdown

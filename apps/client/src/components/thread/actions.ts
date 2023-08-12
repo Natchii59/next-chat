@@ -1,6 +1,7 @@
 'use server'
 
 import { ThreadWithFields } from '@/types'
+import { Prisma } from '@prisma/client'
 
 import { THREADS_FETCH_COUNT } from '@/lib/constants'
 import { db } from '@/lib/db'
@@ -11,11 +12,13 @@ interface ThreadPaginationResult {
   hasMore: boolean
 }
 
-export async function threadPagination(
-  lastId: string
+export async function threadsPagination(
+  lastId: string,
+  where?: Prisma.ThreadWhereInput
 ): Promise<ThreadPaginationResult> {
   const threads = await db.thread.findMany({
     where: {
+      ...where,
       id: {
         lt: lastId
       }

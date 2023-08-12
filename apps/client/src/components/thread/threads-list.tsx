@@ -2,21 +2,33 @@
 
 import { useState } from 'react'
 import { ThreadWithFields } from '@/types'
-import { User } from '@prisma/client'
+import { Prisma, User } from '@prisma/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { THREADS_FETCH_COUNT } from '@/lib/constants'
 
-import { threadPagination } from './actions'
+import { threadsPagination } from './actions'
 import { ThreadLoading } from './loading'
 import { ThreadItem } from './thread-item'
+
+export interface NextPaginationResult {
+  threads: ThreadWithFields[]
+  hasMore: boolean
+}
 
 interface ThreadsListProps {
   baseThreads: ThreadWithFields[]
   currentUser: Pick<User, 'id'>
+  whereOptionsPagination?: Prisma.ThreadWhereInput
+  noThreadsText?: string
 }
 
-export function ThreadsList({ baseThreads, currentUser }: ThreadsListProps) {
+export function ThreadsList({
+  baseThreads,
+  currentUser,
+  whereOptionsPagination,
+  noThreadsText
+}: ThreadsListProps) {
   const [threads, setThreads] = useState<ThreadWithFields[]>(baseThreads)
   const [hasMore, setHasMore] = useState<boolean>(
     baseThreads.length === THREADS_FETCH_COUNT
@@ -24,13 +36,19 @@ export function ThreadsList({ baseThreads, currentUser }: ThreadsListProps) {
 
   const handleNextThreads = async () => {
     const { threads: nextThreads, hasMore: nextHasMore } =
-      await threadPagination(threads[threads.length - 1].id)
+      await threadsPagination(
+        threads[threads.length - 1].id,
+        whereOptionsPagination
+      )
 
     if (!nextHasMore) setHasMore(false)
     setThreads(oldThreads => [...oldThreads, ...nextThreads])
   }
 
-  if (!threads.length) return <p className='text-center'>No threads</p>
+  if (!threads.length)
+    return (
+      <p className='text-center'>{noThreadsText ?? 'No threads to show'}</p>
+    )
 
   return (
     <InfiniteScroll

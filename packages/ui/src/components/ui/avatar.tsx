@@ -50,3 +50,4 @@ AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
 export { Avatar, AvatarImage, AvatarFallback }
 
 export type AvatarProps = AvatarPrimitive.AvatarProps
+export type AvatarImageLoadingStatus = AvatarPrimitive.ImageLoadingStatus

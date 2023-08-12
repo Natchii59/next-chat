@@ -100,6 +100,7 @@ export const authOptions: AuthOptions = {
           token.username = dbUser.username
           token.name = dbUser.name
           token.image = dbUser.image
+          token.bio = dbUser.bio
         }
       }
 
@@ -111,7 +112,8 @@ export const authOptions: AuthOptions = {
         session.user.email = token.email
         session.user.username = token.username
         session.user.name = token.name
-        session.user.image = token.picture
+        session.user.image = token.image
+        session.user.bio = token.bio
       }
 
       return session

@@ -15,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  Textarea,
   toast
 } from 'ui'
 import { z } from 'zod'
@@ -38,13 +39,16 @@ const profileFormSchema = z.object({
     }),
   name: z.string().max(30, {
     message: 'Name must not be longer than 30 characters.'
+  }),
+  bio: z.string().max(160, {
+    message: 'Bio must not be longer than 160 characters.'
   })
 })
 
 export type ProfileFormValues = z.infer<typeof profileFormSchema>
 
 interface ProfileFormProps {
-  user: Pick<User, 'id' | 'username' | 'name'>
+  user: Pick<User, 'id' | 'username' | 'name' | 'bio'>
 }
 
 export function ProfileForm({ user }: ProfileFormProps) {
@@ -56,7 +60,8 @@ export function ProfileForm({ user }: ProfileFormProps) {
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
       username: user.username,
-      name: user.name ?? ''
+      name: user.name ?? '',
+      bio: user.bio ?? ''
     },
     mode: 'onChange'
   })
@@ -122,6 +127,23 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 This is your public name. It can be your real name or a
                 pseudonym.
               </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='bio'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Bio</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder='Your bio... (or not)'
+                  className='resize-none'
+                  {...field}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
